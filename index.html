@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Engineer 2기 양성과정 안내</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+    --surface2: #f0f4fa;
+    --accent: #2563eb;
+    --accent2: #0891b2;
+    --gold: #b45309;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #d1dae8;
+    --green: #059669;
+    --red: #dc2626;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero {
+    padding: 60px 0 40px;
+    text-align: center;
+  }
+
+  .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(8,145,178,0.1));
+    border: 1px solid rgba(37,99,235,0.3);
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 46px);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #0891b2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 4px;
+    margin: 32px 0 24px;
+  }
+
+  .tab-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .tab-btn.active {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: white;
+    font-weight: 700;
+  }
+
+  .tab-btn:hover:not(.active) {
+    background: var(--surface2);
+    color: var(--text);
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-title::before {
+    content: '';
+    width: 3px;
+    height: 14px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2));
+    border-radius: 2px;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0;
+    position: relative;
+  }
+
+  .timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 125px;
+    top: 40px;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    opacity: 0.3;
+  }
+
+  .timeline-date {
+    padding: 16px 20px 16px 0;
+    text-align: right;
+    position: relative;
+  }
+
+  .timeline-date::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 22px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    box-shadow: 0 0 10px rgba(59,130,246,0.5);
+  }
+
+  .t-phase {
+    font-size: 10px;
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .t-date-str {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-top: 2px;
+  }
+
+  .timeline-content {
+    padding: 16px 0 16px 24px;
+    border-left: 1px solid var(--border);
+    margin-left: 5px;
+  }
+
+  .t-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .t-desc {
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.7;
+  }
+
+  .t-location {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 11px;
+    color: #92400e;
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .bootcamp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 600px) {
+    .bootcamp-grid { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 90px 1fr; }
+  }
+
+  .boot-card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+
+  .boot-day {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--accent2);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .boot-date {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .boot-theme {
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.7;
+  }
+
+  .search-box {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .search-box input {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 16px 10px 40px;
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-box input:focus { border-color: var(--accent); }
+  .search-box input::placeholder { color: var(--text-muted); }
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+  }
+
+  .participant-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .participant-table th {
+    background: var(--surface2);
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .participant-table td {
+    padding: 11px 12px;
+    border-bottom: 1px solid #e8eef6;
+    color: var(--text);
+    vertical-align: middle;
+  }
+
+  .participant-table tr:hover td {
+    background: rgba(37,99,235,0.04);
+  }
+
+  .no-num {
+    color: var(--text-muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+  }
+
+  .company-badge {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .company-ok { background: rgba(37,99,235,0.1); color: #1d4ed8; border: 1px solid rgba(37,99,235,0.25); }
+  .company-okh { background: rgba(8,145,178,0.1); color: #0e7490; border: 1px solid rgba(8,145,178,0.25); }
+  .company-ofi { background: rgba(180,83,9,0.08); color: #92400e; border: 1px solid rgba(180,83,9,0.2); }
+  .company-oc { background: rgba(5,150,105,0.1); color: #065f46; border: 1px solid rgba(5,150,105,0.2); }
+  .rank-badge { font-size: 11px; color: var(--text-muted); }
+
+  .form-group { margin-bottom: 20px; }
+
+  .form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .form-label span { color: var(--red); margin-left: 2px; }
+
+  select {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  select:focus { border-color: var(--accent); }
+
+  .select-wrapper { position: relative; }
+  .select-wrapper::after {
+    content: '▾';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+    font-size: 12px;
+  }
+
+  .radio-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .radio-option {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .radio-option input[type="radio"] { display: none; }
+
+  .radio-label {
+    display: block;
+    padding: 14px 16px;
+    background: #f8fafc;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+    color: #475569;
+  }
+
+  .radio-option input:checked + .radio-label {
+    border-color: var(--accent);
+    background: rgba(37,99,235,0.07);
+    color: var(--accent);
+  }
+
+  .radio-label .emoji { font-size: 20px; display: block; margin-bottom: 6px; }
+
+  textarea {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    outline: none;
+    resize: vertical;
+    min-height: 80px;
+    transition: border-color 0.2s;
+  }
+
+  textarea:focus { border-color: var(--accent); }
+  textarea::placeholder { color: var(--text-muted); }
+
+  .submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    margin-top: 8px;
+  }
+
+  .submit-btn:hover { opacity: 0.9; }
+  .submit-btn:active { transform: scale(0.99); }
+
+  .success-msg {
+    display: none;
+    background: #ecfdf5;
+    border: 1px solid #6ee7b7;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  .success-msg.show { display: block; }
+  .success-msg .check { font-size: 36px; margin-bottom: 8px; }
+  .success-msg p { color: var(--green); font-weight: 500; font-size: 14px; }
+
+  .admin-toggle {
+    text-align: center;
+    margin-top: 32px;
+    padding-bottom: 40px;
+  }
+
+  .admin-toggle button {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .admin-toggle button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .admin-panel {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 16px;
+  }
+
+  .admin-panel.show { display: block; }
+
+  .response-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .response-item {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .r-name { font-weight: 700; color: var(--text); min-width: 60px; }
+  .r-laptop { font-weight: 700; }
+  .r-laptop.yes { color: var(--green); }
+  .r-laptop.no { color: var(--red); }
+  .r-note { color: var(--text-muted); flex: 1; }
+
+  .stats-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .stat-box {
+    flex: 1;
+    min-width: 80px;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+  }
+
+  .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  .clear-btn {
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    color: var(--red);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+
+  .export-btn {
+    background: #ecfdf5;
+    border: 1px solid #6ee7b7;
+    color: var(--green);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 8px;
+    margin-right: 8px;
+  }
+
+  .important-notice {
+    background: #fff8ed;
+    border: 1px solid #f59e0b;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #92400e;
+    line-height: 1.7;
+  }
+
+  .important-notice strong { font-size: 14px; display: block; margin-bottom: 4px; color: #b45309; }
+
+  .count-badge {
+    display: inline-block;
+    background: rgba(37,99,235,0.1);
+    color: var(--accent);
+    font-size: 11px;
+    font-family: 'Space Mono', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    border: 1px solid rgba(37,99,235,0.2);
+  }
+
+  .footer {
+    text-align: center;
+    padding: 32px 0;
+    color: var(--text-muted);
+    font-size: 11px;
+    border-top: 1px solid var(--border);
+    margin-top: 16px;
+    font-family: 'Space Mono', monospace;
+  }
+
+  select option { background: #ffffff; color: #1e293b; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="hero">
+    <div class="badge">OK Financial Group</div>
+    <h1>AI Engineer 2기<br>양성과정 안내</h1>
+    <p class="hero-sub">2026년 3월 · 대상자 31명 · 발대식부터 부트캠프까지</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('schedule', this)">📅 일정 안내</button>
+    <button class="tab-btn" onclick="switchTab('participants', this)">👥 대상자 명단</button>
+    <button class="tab-btn" onclick="switchTab('response', this)">✅ 노트북 응답</button>
+  </div>
+
+  <!-- 일정 탭 -->
+  <div id="tab-schedule" class="tab-panel active">
+    <div class="card">
+      <div class="card-title">전체 일정 흐름</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">
+            <div class="t-phase">KICK OFF</div>
+            <div class="t-date-str">3/5(목)</div>
+          </div>
+          <div class="timeline-content">
+            <div class="t-title">발대식</div>
+            <div class="t-desc">AI Engineer 역할 소개 및 교육 프로그램 안내<br>1기 Best Practice 공유 · 개별 과제 도출 W/S</div>
+            <span class="t-location">📍 상공회의소 소회의실 2</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">
+            <div class="t-phase">PRE-STUDY</div>
+            <div class="t-date-str">3/9~13</div>
+          </div>
+          <div class="timeline-content">
+            <div class="t-title">사전학습 (온라인, 5일)</div>
+            <div class="t-desc">OK학당 온라인 콘텐츠 개별 학습<br>① Claude Code Basic (40분)<br>② n8n Basic (100분)<br>개별 과제 수행 — 에이전트 완성도 높이기</div>
+            <span class="t-location">💻 개별 온라인 학습</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">
+            <div class="t-phase">BOOT CAMP</div>
+            <div class="t-date-str">3/16~20</div>
+          </div>
+          <div class="timeline-content">
+            <div class="t-title">부트캠프 (4일)</div>
+            <div class="t-desc">AI에이전트 및 n8n 기반 업무 자동화<br>강사: 일잘러 장PM</div>
+            <span class="t-location">📍 상공회의소 소회의실 2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">부트캠프 Day별 커리큘럼</div>
+      <div class="bootcamp-grid">
+        <div class="boot-card">
+          <div class="boot-day">Day 1</div>
+          <div class="boot-date">3/16(월)</div>
+          <div class="boot-theme">AI를 활용한 자동화 기초<br>· AI 자동화의 3가지 방법<br>· 에이전트 기본 개념<br>· Claude Code 환경 설정<br>· 비정형 업무 Atomic Task 분해<br>· 에이전트 설계서 작성</div>
+        </div>
+        <div class="boot-card">
+          <div class="boot-day">Day 2</div>
+          <div class="boot-date">3/17(화)</div>
+          <div class="boot-theme">AI 에이전트 기반 업무 자동화<br>· 핵심 자동화 로직의 Skill화<br>· Claude Code 에이전트 셋팅<br>· 나만의 AI 에이전트 구현<br>· 테스트를 통한 점진적 개선</div>
+        </div>
+        <div class="boot-card">
+          <div class="boot-day">Day 3</div>
+          <div class="boot-date">3/19(목)</div>
+          <div class="boot-theme">AI 에이전트 워크플로우 개선<br>· n8n 기본 개념 학습 및 실습<br>· n8n 로컬 설치 및 클라우드 배포<br>· n8n 실습: AI 뉴스 데일리 리포트<br>· n8n-skill 활용 자동화 전환</div>
+        </div>
+        <div class="boot-card">
+          <div class="boot-day">Day 4</div>
+          <div class="boot-date">3/20(금)</div>
+          <div class="boot-theme">에이전트 완성 및 최종 발표<br>· n8n 기본 시나리오 셋팅<br>· Claude Code → n8n 전환 도출<br>· 에이전트 동작 시연 발표<br>· 강사 최종 피드백</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="important-notice">
+      <strong>⚠️ 중요 안내</strong>
+      본 과정은 개별 노트북 사용이 필요한 과정입니다. '노트북 응답' 탭에서 지참 가능 여부를 반드시 응답해 주세요.
+    </div>
+  </div>
+
+  <!-- 대상자 탭 -->
+  <div id="tab-participants" class="tab-panel">
+    <div class="card">
+      <div class="card-title">
+        대상자 명단
+        <span class="count-badge">총 31명</span>
+      </div>
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="이름, 소속팀, 회사로 검색..." oninput="filterTable()">
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="participant-table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>회사</th>
+              <th>이름</th>
+              <th>소속팀</th>
+              <th>직책</th>
+            </tr>
+          </thead>
+          <tbody id="participantBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 응답 탭 -->
+  <div id="tab-response" class="tab-panel">
+    <div class="card">
+      <div class="card-title">노트북 지참 여부 응답</div>
+      <div class="important-notice">
+        <strong>📌 안내</strong>
+        본 과정은 개별 노트북 사용이 필요한 과정입니다. '노트북 응답' 탭에서 지참 가능 여부를 반드시 응답해 주세요.
+      </div>
+
+      <div id="responseForm">
+        <div class="form-group">
+          <label class="form-label">이름 선택<span>*</span></label>
+          <div class="select-wrapper">
+            <select id="nameSelect">
+              <option value="">-- 본인 이름을 선택하세요 --</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">개인 노트북 지참 가능 여부<span>*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="laptop" value="yes">
+              <span class="radio-label"><span class="emoji">💻</span>지참 가능</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="laptop" value="no">
+              <span class="radio-label"><span class="emoji">🚫</span>지참 불가</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="laptop" value="unclear">
+              <span class="radio-label"><span class="emoji">❓</span>아직 미정</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">노트북 사양 또는 기타 요청사항 <span style="color:var(--text-muted);font-size:11px;font-weight:400;">(선택)</span></label>
+          <textarea id="noteInput" placeholder="예) 회사 노트북 보안 정책으로 설치 제한 있음 / 개인 맥북 지참 예정 등"></textarea>
+        </div>
+
+        <button class="submit-btn" onclick="submitResponse()">응답 제출하기</button>
+      </div>
+
+      <div class="success-msg" id="successMsg">
+        <div class="check">✅</div>
+        <p id="successText">응답이 저장되었습니다!</p>
+      </div>
+    </div>
+
+    <div class="admin-toggle">
+      <button onclick="checkAdminPassword()">🔒 응답 현황 확인 (관리자 전용)</button>
+    </div>
+
+    <div class="admin-panel" id="adminPanel">
+      <div class="card-title" style="color:var(--accent);margin-bottom:16px;">📊 응답 현황</div>
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-num" id="statTotal">0</div>
+          <div class="stat-label">총 응답</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statYes" style="color:var(--green)">0</div>
+          <div class="stat-label">지참 가능</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statNo" style="color:var(--red)">0</div>
+          <div class="stat-label">지참 불가</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statUnclear" style="color:var(--gold)">0</div>
+          <div class="stat-label">미정</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statPending" style="color:var(--text-muted)">31</div>
+          <div class="stat-label">미응답</div>
+        </div>
+      </div>
+      <div class="response-list" id="responseList"></div>
+      <div style="margin-top:12px;">
+        <button class="export-btn" onclick="exportCSV()">📥 CSV 내보내기</button>
+        <button class="clear-btn" onclick="clearAll()">🗑 전체 초기화</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div style="margin-bottom:10px;line-height:1.9;font-family:'Noto Sans KR',sans-serif;font-size:13px;color:#475569;">
+      <span style="color:#1e293b;font-weight:600;">담당자</span> &nbsp;인재개발팀 박선우 사원<br>
+      T. 010-8188-2702 &nbsp;·&nbsp; E. okhrd@okfngroup.com
+    </div>
+    OK Financial Group · 인재개발팀 · AI Engineer 2기 양성과정 · 2026
+  </div>
+</div>
+
+<script>
+const PARTICIPANTS = [
+  {no:1, name:"박한식", company:"OK", team:"IB금융1팀", rank:"대리"},
+  {no:2, name:"노휘성", company:"OK", team:"IB금융2팀", rank:"대리"},
+  {no:3, name:"송제은", company:"OK", team:"IB금융기획팀", rank:"대리"},
+  {no:4, name:"이윤아", company:"OK", team:"OP운영팀", rank:"대리"},
+  {no:5, name:"곽혜영", company:"OK", team:"OP운영팀", rank:"대리"},
+  {no:6, name:"김은정", company:"OK", team:"OP운영팀", rank:"차장"},
+  {no:7, name:"서준일", company:"OK", team:"기업금융1본부", rank:"차장"},
+  {no:8, name:"표석종", company:"OK", team:"디지털데이터팀", rank:"차장"},
+  {no:9, name:"박광훈", company:"OK", team:"디지털센터기획팀", rank:"차장"},
+  {no:10, name:"박진호", company:"OK", team:"마케팅팀", rank:"대리"},
+  {no:11, name:"김동건", company:"OK", team:"모기지심사1팀", rank:"차장"},
+  {no:12, name:"진구성", company:"OK", team:"모기지심사1팀", rank:"차장"},
+  {no:13, name:"임채웅", company:"OK", team:"소비자금융기획팀", rank:"차장"},
+  {no:14, name:"한대현", company:"OK", team:"신용관리팀", rank:"차장"},
+  {no:15, name:"곽민호", company:"OK", team:"여신사후관리팀", rank:"차장"},
+  {no:16, name:"김인주", company:"OK", team:"영업추진팀", rank:"차장"},
+  {no:17, name:"이한나", company:"OK", team:"채널기획팀", rank:"차장"},
+  {no:18, name:"하경윤", company:"OK", team:"총무팀", rank:"차장"},
+  {no:19, name:"배준형", company:"OK", team:"홍보CSR팀", rank:"대리"},
+  {no:20, name:"최윤서", company:"OKH", team:"연결회계팀", rank:"대리"},
+  {no:21, name:"김민선", company:"OKH", team:"인사기획팀", rank:"대리"},
+  {no:22, name:"황정원", company:"OKH", team:"인사팀", rank:"대리"},
+  {no:23, name:"박종현", company:"OKH", team:"인재개발팀", rank:"사원"},
+  {no:24, name:"유학현", company:"OKH", team:"전략기획팀", rank:"차장"},
+  {no:25, name:"문미라", company:"OKH", team:"조직문화팀", rank:"대리"},
+  {no:26, name:"이창주", company:"OFI", team:"NPL사업팀", rank:"차장"},
+  {no:27, name:"김윤미", company:"OC", team:"경영관리팀", rank:"차장"},
+  {no:28, name:"김태준", company:"OC", team:"기업금융3부", rank:"차장"},
+  {no:29, name:"박성진", company:"OC", team:"영업기획팀", rank:"차장"},
+  {no:30, name:"김은혜", company:"OC", team:"영업추진팀", rank:"차장"},
+  {no:31, name:"김수빈", company:"OC", team:"전산팀", rank:"사원"},
+];
+
+// ── Google Sheets 연동 설정 ──────────────────────────
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxb-WwpJwDs_gjERnyhRRvXQjxOItVigW4GveYu9fVWXwFXMTLQauFbD3TpO80zvGtAhQ/exec';
+
+function getCompanyClass(c) {
+  if(c==='OK') return 'company-ok';
+  if(c==='OKH') return 'company-okh';
+  if(c==='OFI') return 'company-ofi';
+  return 'company-oc';
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('participantBody');
+  if(!data.length) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:24px;">검색 결과가 없습니다.</td></tr>'; return; }
+  tbody.innerHTML = data.map(p => `
+    <tr>
+      <td class="no-num">${String(p.no).padStart(2,'0')}</td>
+      <td><span class="company-badge ${getCompanyClass(p.company)}">${p.company}</span></td>
+      <td style="font-weight:600">${p.name}</td>
+      <td>${p.team}</td>
+      <td class="rank-badge">${p.rank}</td>
+    </tr>
+  `).join('');
+}
+
+function filterTable() {
+  const q = document.getElementById('searchInput').value;
+  const filtered = PARTICIPANTS.filter(p =>
+    p.name.includes(q) || p.team.includes(q) || p.company.toLowerCase().includes(q.toLowerCase())
+  );
+  renderTable(filtered);
+}
+
+function populateSelect() {
+  const sel = document.getElementById('nameSelect');
+  sel.innerHTML = '<option value="">-- 본인 이름을 선택하세요 --</option>';
+  PARTICIPANTS.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.name;
+    opt.textContent = `${p.name} (${p.company} · ${p.team})`;
+    sel.appendChild(opt);
+  });
+}
+
+async function submitResponse() {
+  const name = document.getElementById('nameSelect').value;
+  const laptop = document.querySelector('input[name="laptop"]:checked')?.value;
+  const note = document.getElementById('noteInput').value.trim();
+
+  if (!name) { alert('이름을 선택해 주세요.'); return; }
+  if (!laptop) { alert('노트북 지참 여부를 선택해 주세요.'); return; }
+
+  const p = PARTICIPANTS.find(x => x.name === name);
+  const labels = { yes:'지참 가능 💻', no:'지참 불가 🚫', unclear:'미정 ❓' };
+
+  const btn = document.querySelector('.submit-btn');
+  btn.textContent = '저장 중...';
+  btn.disabled = true;
+
+  const p = PARTICIPANTS.find(x => x.name === name);
+
+  try {
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('company', p?.company || '');
+    formData.append('team', p?.team || '');
+    formData.append('rank', p?.rank || '');
+    formData.append('laptop', labels[laptop] || laptop);
+    formData.append('note', note);
+    formData.append('time', new Date().toLocaleString('ko-KR'));
+
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    });
+
+    document.getElementById('successText').textContent = `${name}님의 응답이 Google Sheets에 저장되었습니다! (${labels[laptop]})`;
+    document.getElementById('successMsg').classList.add('show');
+    document.getElementById('responseForm').style.display = 'none';
+
+  } catch(err) {
+    alert('저장 중 오류가 발생했습니다. 담당자에게 문의해 주세요.\n' + err.message);
+    btn.textContent = '응답 제출하기';
+    btn.disabled = false;
+  }
+}
+
+function checkAdminPassword() {
+  const panel = document.getElementById('adminPanel');
+  if (panel.classList.contains('show')) {
+    panel.classList.remove('show');
+    return;
+  }
+  const pw = prompt('관리자 비밀번호를 입력하세요:');
+  if (pw === 'dlsworoqkf1!') {
+    panel.classList.add('show');
+    loadAdminData();
+  } else if (pw !== null) {
+    alert('비밀번호가 올바르지 않습니다.');
+  }
+}
+
+function toggleAdmin() {
+  const panel = document.getElementById('adminPanel');
+  panel.classList.toggle('show');
+  if(panel.classList.contains('show')) loadAdminData();
+}
+
+async function loadAdminData() {
+  const list = document.getElementById('responseList');
+  list.innerHTML = '<p style="color:var(--text-muted);font-size:13px;padding:12px;">📡 Google Sheets에서 데이터 불러오는 중...</p>';
+
+  try {
+    const res = await fetch(APPS_SCRIPT_URL + '?action=get');
+    const data = await res.json();
+    renderAdmin(data);
+  } catch(err) {
+    list.innerHTML = '<p style="color:#dc2626;font-size:13px;padding:12px;">⚠️ 데이터를 불러오지 못했습니다. Apps Script GET 핸들러를 확인해 주세요.</p>';
+  }
+}
+
+function renderAdmin(rows) {
+  const yes = rows.filter(r => r.laptop && r.laptop.includes('지참 가능')).length;
+  const no = rows.filter(r => r.laptop && r.laptop.includes('지참 불가')).length;
+  const unclear = rows.filter(r => r.laptop && r.laptop.includes('미정')).length;
+
+  document.getElementById('statTotal').textContent = rows.length;
+  document.getElementById('statYes').textContent = yes;
+  document.getElementById('statNo').textContent = no;
+  document.getElementById('statUnclear').textContent = unclear;
+  document.getElementById('statPending').textContent = Math.max(0, 31 - rows.length);
+
+  const list = document.getElementById('responseList');
+  if(!rows.length) {
+    list.innerHTML = '<p style="color:var(--text-muted);font-size:12px;padding:12px;">아직 응답이 없습니다.</p>';
+    return;
+  }
+  list.innerHTML = rows.map(r => {
+    const isYes = r.laptop && r.laptop.includes('가능');
+    const isNo  = r.laptop && r.laptop.includes('불가');
+    const cls   = isYes ? 'yes' : isNo ? 'no' : '';
+    return `<div class="response-item">
+      <span class="r-name">${r.name || ''}</span>
+      <span style="color:var(--text-muted);font-size:11px;">${r.company || ''} · ${r.team || ''}</span>
+      <span class="r-laptop ${cls}">${r.laptop || ''}</span>
+      ${r.note ? `<span class="r-note">${r.note}</span>` : ''}
+      <span style="color:var(--text-muted);font-size:10px;margin-left:auto;">${r.time || ''}</span>
+    </div>`;
+  }).join('');
+}
+
+function refreshAdmin() { loadAdminData(); }
+
+function exportCSV() {
+  // Google Sheets에서 직접 다운로드 안내
+  alert('Google Sheets에서 직접 다운로드 해주세요.\n파일 → 다운로드 → CSV');
+}
+
+function clearAll() {
+  alert('데이터 삭제는 Google Sheets에서 직접 진행해 주세요.');
+}
+
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  btn.classList.add('active');
+
+  // Reset response form when switching to response tab
+  if(tab==='response') {
+    document.getElementById('responseForm').style.display = 'block';
+    document.getElementById('successMsg').classList.remove('show');
+    document.q
